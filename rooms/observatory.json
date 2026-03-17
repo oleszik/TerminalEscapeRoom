@@ -1,0 +1,69 @@
+{
+  "name": "observatory",
+  "puzzle_id": "observatory_alignment",
+  "next_rooms": {
+    "exit_hall": {
+      "unlocked_by_flag": "observatory_exit_unlocked"
+    }
+  },
+  "aliases": {
+    "telescope": ["telescope", "scope", "lens", "instrument"],
+    "console": ["console", "panel", "controls", "keypad"],
+    "door": ["door", "hatch", "pressure door", "exit"]
+  },
+  "objects": {
+    "telescope": "A brass telescope mounted on a geared pedestal. Its alignment rings can still be adjusted.",
+    "console": "A cracked control console with a compact keypad and a single status light.",
+    "door": "A round pressure door blocks the way forward. It appears linked to the console."
+  },
+  "interactions": {
+    "use": [
+      {
+        "target": "telescope",
+        "forbid_flags": ["observatory_scope_aligned"],
+        "set_flags": ["observatory_scope_aligned"],
+        "response": "You adjust the rings and bring a bright point into focus. {alignment_clue}"
+      },
+      {
+        "target": "telescope",
+        "requires_flags": ["observatory_scope_aligned"],
+        "response": "The telescope is already aligned to the same glowing marker."
+      },
+      {
+        "target": "console",
+        "requires_flags": ["observatory_scope_aligned"],
+        "response": "The console wakes with a chime. A prompt appears: ENTER ALIGNMENT CODE"
+      },
+      {
+        "target": "console",
+        "response": "The console remains dark. The telescope may power it if aligned."
+      },
+      {
+        "target": "door",
+        "requires_flags": ["observatory_exit_unlocked"],
+        "response": "The pressure door is unlocked. You can go to the exit_hall."
+      },
+      {
+        "target": "door",
+        "response": "The door is sealed. The console likely controls it."
+      }
+    ],
+    "enter": [
+      {
+        "requires_flags": ["observatory_scope_aligned"],
+        "expected_code": "{required_code}",
+        "set_flags": ["observatory_exit_unlocked"],
+        "unlock_room": true,
+        "response": "The console confirms alignment and unlocks the pressure door with a heavy clunk."
+      },
+      {
+        "requires_flags": ["observatory_scope_aligned"],
+        "response": "Code rejected. The status light blinks amber."
+      },
+      {
+        "response": "There is nowhere to enter a code yet."
+      }
+    ]
+  },
+  "gives_key": false
+}

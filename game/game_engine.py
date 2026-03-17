@@ -1,4 +1,6 @@
+import json
 import os
+import sys
 
 from .room import Room
 from .player import Player
@@ -7,7 +9,20 @@ from .puzzle_engine import PuzzleEngine
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS_PATH = os.path.join(PROJECT_ROOT, "assets", "ascii_art.txt")
+ROOM_VISUALS_PATH = os.path.join(PROJECT_ROOT, "assets", "room_visuals.json")
 ROOMS_DIR = os.path.join(PROJECT_ROOT, "rooms")
+
+ANSI_TOKENS = {
+    "{reset}": "\033[0m",
+    "{bold}": "\033[1m",
+    "{dim}": "\033[2m",
+    "{red}": "\033[31m",
+    "{green}": "\033[32m",
+    "{yellow}": "\033[33m",
+    "{blue}": "\033[34m",
+    "{magenta}": "\033[35m",
+    "{cyan}": "\033[36m",
+}
 
 
 def load_ascii_art():
@@ -17,8 +32,50 @@ def load_ascii_art():
     except FileNotFoundError:
         print("Welcome to the Escape Room!")
 
+
+def load_room_visuals():
+    try:
+        with open(ROOM_VISUALS_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data if isinstance(data, dict) else {}
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def supports_ansi():
+    if os.getenv("NO_COLOR"):
+        return False
+    if os.getenv("TERM", "").lower() == "dumb":
+        return False
+    return sys.stdout.isatty()
+
+
+def render_with_style(text, use_ansi):
+    rendered = str(text)
+    for token, ansi_code in ANSI_TOKENS.items():
+        rendered = rendered.replace(token, ansi_code if use_ansi else "")
+    return rendered
+
+
+def print_room_visual(room_name, room_visuals, use_ansi):
+    visual = room_visuals.get(room_name)
+    if not isinstance(visual, dict):
+        return
+
+    for line in visual.get("art", []):
+        print(render_with_style(line, use_ansi))
+
+    caption = visual.get("caption")
+    if caption:
+        print(render_with_style(caption, use_ansi))
+
+    if visual.get("art") or caption:
+        print()
+
 def start_game():
     load_ascii_art()
+    room_visuals = load_room_visuals()
+    use_ansi = supports_ansi()
     player = Player()
     game_state = {"flags": set(), "puzzle_variants": {}}
     puzzle_engine = PuzzleEngine()
@@ -58,9 +115,11 @@ def start_game():
         current_room_path = os.path.join(ROOMS_DIR, f"{destination}.json")
         room = Room(current_room_path, puzzle_engine=puzzle_engine, game_state=game_state)
         print(f"\nYou move into the {destination}...\n")
+        print_room_visual(destination, room_visuals, use_ansi)
         print(room.describe())
 
     print("Type 'help' for a list of commands.\n")
+    print_room_visual(room.name, room_visuals, use_ansi)
     print(room.describe())
 
     while True:
@@ -71,7 +130,7 @@ def start_game():
             break
 
         elif command == "help":
-            print("Commands: look [object], use [item], enter [code], go [room], inventory, quit")
+            print("Commands: look [object], use [item], activate [object], enter [code], go [room], inventory, quit")
 
         elif command == "look":
             print(room.describe())
@@ -91,6 +150,9 @@ def start_game():
                         move_to(auto_destination)
                     else:
                         print(reason)
+
+        elif command.startswith("activate "):
+            print(room.activate(command[9:], player))
 
         elif command.startswith("enter "):
             code = command[6:]

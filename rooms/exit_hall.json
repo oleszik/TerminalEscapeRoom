@@ -1,0 +1,99 @@
+{
+  "name": "exit_hall",
+  "puzzle_id": "exit_protocol",
+  "next_rooms": {
+    "courtyard": {
+      "unlocked_by_flag": "exit_gate_open"
+    }
+  },
+  "aliases": {
+    "lever": ["lever", "switch", "power lever"],
+    "panel": ["panel", "console", "control", "terminal", "keypad"],
+    "gate": ["gate", "door", "outer gate", "exit"]
+  },
+  "objects": {
+    "lever": "A thick steel lever sits in a locked-down position beside warning labels.",
+    "panel": "A waist-high control panel with a dusty screen and alphanumeric keypad.",
+    "gate": "A reinforced gate bars the corridor. Hydraulic locks hold it shut."
+  },
+  "interactions": {
+    "use": [
+      {
+        "target": "lever",
+        "forbid_flags": ["exit_power_on"],
+        "set_flags": ["exit_power_on"],
+        "response": "You throw the lever. Power surges through the hall and the panel display flickers awake."
+      },
+      {
+        "target": "lever",
+        "requires_flags": ["exit_power_on"],
+        "response": "The lever is already engaged."
+      },
+      {
+        "target": "panel",
+        "requires_flags": ["exit_power_on"],
+        "forbid_flags": ["exit_panel_ready"],
+        "set_flags": ["exit_panel_ready"],
+        "response": "The screen boots and prints a maintenance line: {protocol_hint}"
+      },
+      {
+        "target": "panel",
+        "requires_flags": ["exit_panel_ready"],
+        "response": "The panel is ready. Prompt: ENTER PROTOCOL WORD"
+      },
+      {
+        "target": "panel",
+        "response": "No response. The hall needs power first."
+      },
+      {
+        "target": "gate",
+        "requires_flags": ["exit_gate_open"],
+        "response": "The hydraulic locks are open. You can go to the courtyard."
+      },
+      {
+        "target": "gate",
+        "response": "The gate remains locked until the panel accepts the protocol word."
+      }
+    ],
+    "enter": [
+      {
+        "requires_flags": ["exit_panel_ready"],
+        "expected_code": "{required_code}",
+        "forbid_flags": ["exit_gate_armed"],
+        "set_flags": ["exit_gate_armed"],
+        "response": "ACCESS GRANTED. Gate controls armed. Use 'activate gate' to cycle the hydraulics."
+      },
+      {
+        "requires_flags": ["exit_gate_armed"],
+        "response": "The gate is already armed. Use 'activate gate' to open it."
+      },
+      {
+        "requires_flags": ["exit_panel_ready"],
+        "response": "ACCESS DENIED. The panel emits a sharp tone."
+      },
+      {
+        "response": "There is nowhere to enter a code yet."
+      }
+    ],
+    "activate": [
+      {
+        "target": "gate",
+        "requires_flags": ["exit_gate_armed"],
+        "forbid_flags": ["exit_gate_open"],
+        "set_flags": ["exit_gate_open"],
+        "unlock_room": true,
+        "response": "You trigger the gate actuator. Hydraulic pistons groan and the outer gate slides open."
+      },
+      {
+        "target": "gate",
+        "requires_flags": ["exit_gate_open"],
+        "response": "The gate is already open."
+      },
+      {
+        "target": "gate",
+        "response": "The actuator is inert. Authenticate at the panel first."
+      }
+    ]
+  },
+  "gives_key": false
+}

@@ -1,0 +1,23 @@
+{
+  "name": "courtyard",
+  "puzzle_id": "courtyard_escape",
+  "aliases": {
+    "fountain": ["fountain", "water", "stone fountain"],
+    "sky": ["sky", "stars", "night sky"],
+    "gate": ["gate", "door", "hall door"]
+  },
+  "objects": {
+    "fountain": "A dry stone fountain sits in the center of the open courtyard.",
+    "sky": "The night sky is clear. Fresh air fills your lungs for the first time in hours.",
+    "gate": "Behind you, the reinforced gate seals with a final thud. You are outside."
+  },
+  "interactions": {
+    "use": [
+      {
+        "target": ["fountain", "sky", "gate"],
+        "response": "You made it out. The escape room is complete."
+      }
+    ]
+  },
+  "gives_key": false
+}

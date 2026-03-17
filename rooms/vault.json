@@ -1,15 +1,69 @@
 {
   "name": "vault",
   "puzzle_id": "vault_revelation",
+  "next_rooms": {
+    "observatory": {
+      "unlocked_by_flag": "vault_door_open"
+    }
+  },
   "aliases": {
     "pedestal": ["pedestal", "stand", "altar"],
     "journal": ["journal", "book", "notebook"],
-    "door": ["door", "vault door", "exit"]
+    "door": ["door", "vault door", "exit"],
+    "panel": ["panel", "control panel", "keypad", "console"]
   },
   "objects": {
     "pedestal": "A steel pedestal bolted to the floor. A journal rests at its center.",
     "journal": "The leather journal is dry and brittle. Your initials are pressed into the cover.",
-    "door": "The vault door is sealed from this side. For now, this is the end of the path."
+    "door": "The vault door is sealed from this side, but a recessed panel is hidden in the frame.",
+    "panel": "A narrow keypad panel sits flush with the steel. It has no labels, only a blinking cursor."
+  },
+  "interactions": {
+    "use": [
+      {
+        "target": "journal",
+        "forbid_flags": ["vault_journal_read"],
+        "set_flags": ["vault_journal_read"],
+        "response": "You read the brittle pages. Most are blank, except for one repeated note: {vault_hint}"
+      },
+      {
+        "target": "journal",
+        "requires_flags": ["vault_journal_read"],
+        "response": "You flip the journal again. The same repeated hint stares back at you."
+      },
+      {
+        "target": ["pedestal", "panel", "door"],
+        "requires_flags": ["vault_journal_read"],
+        "forbid_flags": ["vault_panel_revealed"],
+        "set_flags": ["vault_panel_revealed"],
+        "response": "You press against the pedestal. A hidden panel slides open beside the door, revealing a keypad."
+      },
+      {
+        "target": ["pedestal", "panel", "door"],
+        "requires_flags": ["vault_panel_revealed"],
+        "response": "The exposed keypad waits silently for a code."
+      },
+      {
+        "target": ["pedestal", "panel", "door"],
+        "response": "Nothing shifts. There might be a clue in the journal first."
+      }
+    ],
+    "enter": [
+      {
+        "requires_flags": ["vault_panel_revealed"],
+        "expected_code": "{required_code}",
+        "set_flags": ["vault_door_open"],
+        "unlock_room": true,
+        "response": "The keypad flashes green. Massive bolts retract, opening a narrow route onward."
+      },
+      {
+        "requires_flags": ["vault_panel_revealed"],
+        "response": "The keypad rejects the entry with a low buzz."
+      },
+      {
+        "response": "There is nowhere to enter a code yet."
+      }
+    ]
   },
   "gives_key": false
 }

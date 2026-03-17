@@ -31,6 +31,21 @@
     ]
   },
   "vault_revelation": {
-    "description": "The vault door seals behind you with a metallic hush.\nInside, a single pedestal holds a journal stamped with your own initials.\nIts first line reads: 'The room remembers each attempt.'"
+    "description": "The vault door seals behind you with a metallic hush.\nInside, a single pedestal holds a journal stamped with your own initials.\nIts first line reads: 'The room remembers each attempt.'",
+    "required_code": "ECHO",
+    "vault_hint": "A single word is scratched into every margin: ECHO."
+  },
+  "observatory_alignment": {
+    "description": "You climb into a circular observatory beneath a cracked glass dome.\nA brass telescope points toward a dim slit in the clouds.\nAn old control console hums softly beside a locked pressure door.",
+    "required_code": "ZENITH",
+    "alignment_clue": "As the lens settles, one word burns across the reticle: ZENITH."
+  },
+  "exit_protocol": {
+    "description": "A narrow transit hall stretches ahead, lined with dead machinery.\nAt the far end, a reinforced gate blocks the path out.\nA control panel and a heavy lever wait nearby.",
+    "required_code": "LIBERTY",
+    "protocol_hint": "Boot log recovered: PROTOCOL WORD = LIBERTY"
+  },
+  "courtyard_escape": {
+    "description": "You step into an open courtyard under the night sky.\nCold air rushes in and the weight of the facility finally falls away.\nFor now, you are free."
   }
 }

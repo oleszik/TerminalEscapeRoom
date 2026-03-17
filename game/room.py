@@ -181,6 +181,15 @@ class Room:
 
         return "You can't use that here."
 
+    def activate(self, target, player=None):
+        target = self._normalize_target(target)
+
+        scripted_response = self._run_scripted_interaction("activate", target=target, player=player)
+        if scripted_response:
+            return scripted_response
+
+        return "You can't activate that here."
+
     def enter_code(self, code, player=None):
         scripted_response = self._run_scripted_interaction("enter", code=code, player=player)
         if scripted_response:

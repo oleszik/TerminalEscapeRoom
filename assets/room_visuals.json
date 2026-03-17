@@ -1,0 +1,92 @@
+{
+  "study": {
+    "art": [
+      "{magenta}+------------------------------------------------------------------+{reset}",
+      "{magenta}|{reset} {bold}STUDY :: LOCKED STUDY{reset}                                            {magenta}|{reset}",
+      "{magenta}|{reset}                                                                  {magenta}|{reset}",
+      "{magenta}|{reset}   tall bookshelf            crooked painting                     {magenta}|{reset}",
+      "{magenta}|{reset}   [ old titles ]            in a cracked frame                   {magenta}|{reset}",
+      "{magenta}|{reset}                                                                  {magenta}|{reset}",
+      "{magenta}|{reset}                     .--------------------.                       {magenta}|{reset}",
+      "{magenta}|{reset}                     |   brass puzzle box  |                      {magenta}|{reset}",
+      "{magenta}|{reset}                     |    dials A B C D   |                       {magenta}|{reset}",
+      "{magenta}|{reset}                     '--------------------'                       {magenta}|{reset}",
+      "{magenta}|{reset}                                                                  {magenta}|{reset}",
+      "{magenta}|{reset}                         iron door [ #### ]                       {magenta}|{reset}",
+      "{magenta}+------------------------------------------------------------------+{reset}"
+    ],
+    "caption": "{dim}The room is quiet, except for a faint hum from the keypad.{reset}"
+  },
+  "library": {
+    "art": [
+      "{blue}+------------------------------------------------------------------+{reset}",
+      "{blue}|{reset} {bold}LIBRARY :: MOVING STACKS{reset}                                       {blue}|{reset}",
+      "{blue}|{reset}                                                                  {blue}|{reset}",
+      "{blue}|{reset}   shelves tower overhead          rolling ladder on brass rail  {blue}|{reset}",
+      "{blue}|{reset}   [ ] [ ] [ ] [ ] [ ]             ====O====================      {blue}|{reset}",
+      "{blue}|{reset}                                                                  {blue}|{reset}",
+      "{blue}|{reset}                    .----------------------------.               {blue}|{reset}",
+      "{blue}|{reset}                    |       antique globe        |              {blue}|{reset}",
+      "{blue}|{reset}                    |      axis slightly loose   |              {blue}|{reset}",
+      "{blue}|{reset}                    '----------------------------'              {blue}|{reset}",
+      "{blue}|{reset}                                                                  {blue}|{reset}",
+      "{blue}|{reset}                      one shelf sits out of line                 {blue}|{reset}",
+      "{blue}+------------------------------------------------------------------+{reset}"
+    ],
+    "caption": "{dim}Wood creaks softly. Somewhere behind the shelves, a lock waits.{reset}"
+  },
+  "observatory": {
+    "art": [
+      "{cyan}+------------------------------------------------------------------+{reset}",
+      "{cyan}|{reset} {bold}OBSERVATORY :: ALIGNMENT DECK{reset}                                   {cyan}|{reset}",
+      "{cyan}|{reset}                                                                  {cyan}|{reset}",
+      "{cyan}|{reset}                {dim}.        *         .        *{reset}               {cyan}|{reset}",
+      "{cyan}|{reset}         {dim}*         .         .         .         *{reset}            {cyan}|{reset}",
+      "{cyan}|{reset}                                                                  {cyan}|{reset}",
+      "{cyan}|{reset}                      {yellow}___{reset}                                         {cyan}|{reset}",
+      "{cyan}|{reset}                  {yellow}.-'   '-.{reset}                                      {cyan}|{reset}",
+      "{cyan}|{reset}                 {yellow}/  _   _  \\{reset}       {magenta}[TELESCOPE LOCK]{reset}          {cyan}|{reset}",
+      "{cyan}|{reset}                 {yellow}| (_) (_) |{reset}----------------------------------{cyan}|{reset}",
+      "{cyan}|{reset}                 {yellow}\\    ^    /{reset}     target: {bold}ZENITH{reset}                {cyan}|{reset}",
+      "{cyan}|{reset}                  {yellow}'-.___.-' {reset}                                      {cyan}|{reset}",
+      "{cyan}+------------------------------------------------------------------+{reset}"
+    ],
+    "caption": "{dim}A quiet hum rises as star-map relays spin into position.{reset}"
+  },
+  "exit_hall": {
+    "art": [
+      "{yellow}+------------------------------------------------------------------+{reset}",
+      "{yellow}|{reset} {bold}EXIT HALL :: INDUSTRIAL TRANSIT SPINE{reset}                         {yellow}|{reset}",
+      "{yellow}|{reset}                                                                  {yellow}|{reset}",
+      "{yellow}|{reset}   {red}[LOCK]{reset}=====||=====||=====||=====||=====||====={green}[ARM]{reset}    {yellow}|{reset}",
+      "{yellow}|{reset}            ||     ||     ||     ||     ||     ||              {yellow}|{reset}",
+      "{yellow}|{reset}           _||_____||_____||_____||_____||_____||_             {yellow}|{reset}",
+      "{yellow}|{reset}          /_______________________________________\\            {yellow}|{reset}",
+      "{yellow}|{reset}          |   panel: {bold}AUTH REQUIRED{reset}                 |            {yellow}|{reset}",
+      "{yellow}|{reset}          |   gate:  {dim}hydraulics offline{reset}              |            {yellow}|{reset}",
+      "{yellow}|{reset}          |_______________________________________|            {yellow}|{reset}",
+      "{yellow}|{reset}                                                                  {yellow}|{reset}",
+      "{yellow}|{reset}                 command chain: {bold}use -> enter -> activate{reset}       {yellow}|{reset}",
+      "{yellow}+------------------------------------------------------------------+{reset}"
+    ],
+    "caption": "{dim}Metal groans travel down the corridor like distant thunder.{reset}"
+  },
+  "courtyard": {
+    "art": [
+      "{green}+------------------------------------------------------------------+{reset}",
+      "{green}|{reset} {bold}COURTYARD :: OPEN AIR{reset}                                           {green}|{reset}",
+      "{green}|{reset}                                                                  {green}|{reset}",
+      "{green}|{reset}                    {cyan}*{reset}         {cyan}*{reset}               {cyan}*{reset}               {green}|{reset}",
+      "{green}|{reset}                                                                  {green}|{reset}",
+      "{green}|{reset}                 {blue}~~~~~{reset}      {blue}_____ {reset}      {blue}~~~~~{reset}               {green}|{reset}",
+      "{green}|{reset}               {blue}~~{reset}      {blue}~~{reset}  {blue}/     \\{reset}  {blue}~~{reset}      {blue}~~{reset}             {green}|{reset}",
+      "{green}|{reset}              {blue}~~{reset}   {green}_/\\_{reset}   {blue}|  _  |{reset}   {green}_/\\_{reset}   {blue}~~{reset}            {green}|{reset}",
+      "{green}|{reset}             {blue}~~{reset}   {green}/_/  \\_\\{reset}  {blue}| |_| |{reset}  {green}/_/  \\_\\{reset}  {blue}~~{reset}           {green}|{reset}",
+      "{green}|{reset}                   {green}|  fountain  |{reset}  {green}|  gate  |{reset}                      {green}|{reset}",
+      "{green}|{reset}                                                                  {green}|{reset}",
+      "{green}|{reset}             {bold}You escaped the maze. Breathe.{reset}                       {green}|{reset}",
+      "{green}+------------------------------------------------------------------+{reset}"
+    ],
+    "caption": "{dim}Wind replaces machinery. The silence feels earned.{reset}"
+  }
+}
