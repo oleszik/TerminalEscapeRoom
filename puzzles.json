@@ -1,0 +1,36 @@
+{
+  "cipher_books": {
+    "description": "You wake up in a dimly lit study. Dust motes swirl through shafts of light.\nA tall bookshelf lines the wall. A worn armchair sits by a cold fireplace.\nA large desk holds a brass lamp, a note, and a strange box.\nAn iron door blocks your escape, beside it glows a numeric keypad.",
+    "note": "They are not just books—they speak. Listen well:\nThird from Poe, fifth from Shelley, first from Doyle, fourth from Verne.\nTheir voices will unlock the way.",
+    "books": {
+      "poe": "The Raven",
+      "shelley": "Frankenstein",
+      "doyle": "A Study in Scarlet",
+      "verne": "Journey to the Center of the Earth"
+    },
+    "required_code": "EKAR"
+  },
+  "book_swap": {
+    "description": "You step into a towering library. Dust drifts through narrow beams of light.\nA rolling ladder stands beside warped shelves. An old globe rests on a pedestal.\nSomewhere in here, a hidden mechanism protects the way forward.",
+    "variants": [
+      {
+        "required_code": "ORION",
+        "variant_intro": "The hunter watches from winter skies.",
+        "variant_clue": "Name the winter hunter traced by three bright stars."
+      },
+      {
+        "required_code": "VEGA",
+        "variant_intro": "The falling harp still sings.",
+        "variant_clue": "Speak the brightest star of Lyra."
+      },
+      {
+        "required_code": "RIGEL",
+        "variant_intro": "Blue fire marks the giant's foot.",
+        "variant_clue": "Identify Orion's blue-white foot star."
+      }
+    ]
+  },
+  "vault_revelation": {
+    "description": "The vault door seals behind you with a metallic hush.\nInside, a single pedestal holds a journal stamped with your own initials.\nIts first line reads: 'The room remembers each attempt.'"
+  }
+}

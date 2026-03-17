@@ -1,0 +1,68 @@
+{
+  "name": "study",
+  "puzzle_id": "cipher_books",
+  "auto_next_room": "library",
+  "next_rooms": {
+    "library": {
+      "unlocked_by_flag": "study_door_unlocked"
+    }
+  },
+  "aliases": {
+    "box": ["box", "strange box", "mechanical box", "metal box"],
+    "bookshelf": ["books", "book", "bookshelf", "shelf", "library"],
+    "painting": ["painting", "picture", "portrait"],
+    "note": ["note", "paper", "clue", "message"],
+    "desk": ["desk", "table", "workbench"],
+    "door": ["door", "exit", "gate"]
+  },
+  "objects": {
+  "bookshelf": "A towering bookshelf lined with dusty tomes from Poe, Shelley, Doyle, and Verne.",
+  "painting": "A crooked painting of a ship in a storm. One corner is slightly peeled from the wall.",
+  "desk": "A large oak desk. The drawers are locked. On top: a brass lamp, a note, and a mechanical box.",
+  "note": "A sheet of paper with cryptic handwriting sits on the desk. You might want to read it.",
+  "box": "A brass mechanical box with four dials labeled A to D. The metal is slightly tarnished. A red button glows faintly.\nIt looks like it accepts a code.",
+  "door": "An imposing iron door with no handle, only a numeric keypad glowing faintly beside it."
+  },
+  "interactions": {
+    "use": [
+      {
+        "target": "note",
+        "response": "{note}"
+      },
+      {
+        "target": "painting",
+        "response": "You peel the painting back further... nothing but cold wall."
+      },
+      {
+        "target": "box",
+        "response": "You examine the mechanical box closely. The dials are responsive.\nYou can try entering a code with: 'enter [code]'"
+      },
+      {
+        "target": "key",
+        "requires_items": ["key"],
+        "set_flags": ["study_door_unlocked"],
+        "unlock_room": true,
+        "response": "You insert the key into a hidden slot. The iron door unlocks with a deep click."
+      },
+      {
+        "target": "key",
+        "response": "You do not have a key."
+      }
+    ],
+    "enter": [
+      {
+        "expected_code": "{required_code}",
+        "forbid_flags": ["study_box_opened"],
+        "set_flags": ["study_box_opened"],
+        "give_items": ["key"],
+        "response": "The box clicks open with a mechanical whir. Inside lies a small iron key. You take it."
+      },
+      {
+        "expected_code": "{required_code}",
+        "requires_flags": ["study_box_opened"],
+        "response": "The box is already open. You already took the key."
+      }
+    ]
+  },
+  "gives_key": true
+}

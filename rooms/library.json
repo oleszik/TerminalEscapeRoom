@@ -1,0 +1,80 @@
+{
+  "name": "library",
+  "puzzle_id": "book_swap",
+  "aliases": {
+    "globe": ["globe", "earth", "sphere"],
+    "ladder": ["ladder", "stairs"],
+    "shelf": ["shelf", "secret shelf", "rotating shelf"],
+    "door": ["door", "passage", "archway"]
+  },
+  "objects": {
+    "globe": "An antique globe. It feels slightly loose at the base.",
+    "ladder": "A tall rolling ladder. Its wheels can lock into a groove near the upper shelves.",
+    "shelf": "One shelf seems misaligned, as if it can rotate.",
+    "door": "A narrow archway sealed by a hidden keypad panel."
+  },
+  "interactions": {
+    "use": [
+      {
+        "target": "globe",
+        "forbid_flags": ["library_globe_rotated"],
+        "set_flags": ["library_globe_rotated"],
+        "response": "You rotate the globe. A brass ring clicks free from its base. Etched inside: {variant_intro}"
+      },
+      {
+        "target": "globe",
+        "requires_flags": ["library_globe_rotated"],
+        "response": "The globe is already turned. The hidden ring remains exposed."
+      },
+      {
+        "target": "ladder",
+        "forbid_flags": ["library_ladder_positioned"],
+        "set_flags": ["library_ladder_positioned"],
+        "response": "You wheel the ladder into place and lock it against the misaligned shelf."
+      },
+      {
+        "target": "ladder",
+        "requires_flags": ["library_ladder_positioned"],
+        "response": "The ladder is already locked into position."
+      },
+      {
+        "target": "shelf",
+        "requires_flags": ["library_globe_rotated", "library_ladder_positioned"],
+        "forbid_flags": ["library_shelf_opened"],
+        "set_flags": ["library_shelf_opened"],
+        "response": "From the top rung, you pull the shelf outward. Behind it is a keypad and a scratched clue: {variant_clue}"
+      },
+      {
+        "target": "shelf",
+        "requires_flags": ["library_shelf_opened"],
+        "response": "The hidden keypad behind the shelf waits for input."
+      },
+      {
+        "target": "shelf",
+        "response": "You need better leverage before this shelf will budge."
+      }
+    ],
+    "enter": [
+      {
+        "requires_flags": ["library_shelf_opened"],
+        "expected_code": "{required_code}",
+        "set_flags": ["library_vault_unlocked"],
+        "unlock_room": true,
+        "response": "The concealed lock disengages. The archway slides open toward a steel vault."
+      },
+      {
+        "requires_flags": ["library_shelf_opened"],
+        "response": "The keypad flashes red and resets."
+      },
+      {
+        "response": "There is nowhere to enter a code yet."
+      }
+    ]
+  },
+  "gives_key": false,
+  "next_rooms": {
+    "vault": {
+      "unlocked_by_flag": "library_vault_unlocked"
+    }
+  }
+}

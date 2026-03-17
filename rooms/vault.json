@@ -1,0 +1,15 @@
+{
+  "name": "vault",
+  "puzzle_id": "vault_revelation",
+  "aliases": {
+    "pedestal": ["pedestal", "stand", "altar"],
+    "journal": ["journal", "book", "notebook"],
+    "door": ["door", "vault door", "exit"]
+  },
+  "objects": {
+    "pedestal": "A steel pedestal bolted to the floor. A journal rests at its center.",
+    "journal": "The leather journal is dry and brittle. Your initials are pressed into the cover.",
+    "door": "The vault door is sealed from this side. For now, this is the end of the path."
+  },
+  "gives_key": false
+}
